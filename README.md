@@ -39,5 +39,5 @@
    # Replace <Host> with the Host mentioned in ~/.ssh/config
    sudo echo "<host_ip>  <Host>" >> /etc/hosts
    ```
-   Example: `sudo echo "10.1.2.3    devbox" >> /etc/hosts
+   Example: `sudo echo "10.1.2.3    devbox" >> /etc/hosts`
 
