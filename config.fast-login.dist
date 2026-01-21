@@ -1,0 +1,14 @@
+Host devbox                                 # `ssh devbox` directly means `ssh username_in_host@host_ip`
+  HostName host_ip                          # IP on which port 22 [or any other port where ssh] is open.
+  User username_in_host                     # User name in the server
+
+  # Speed Fixes
+  GSSAPIAuthentication no                   # If Kerberos Authentication is enabled, then comment this
+  IdentitiesOnly yes                        # Controls which SSH keys the client is allowed to offer to a server during authentication. This forces a specific key type for authentication. The key type us specified in IdentityFile option.
+  IdentityFile ~/.ssh/id_rsa                # Ideally your private key. It can be either ~/.ssh/id_rsa or ~/.ssh/id_ed25519 or some other key depending on the cipher being used.
+
+  # Connection reuse (even more speedup)
+  ControlMaster auto                        # This allows opening of a master connection which will allow faster subsequent logins, once a login has happened once
+  ControlPersist 10m                        # This allows the exit of an ssh login to persist the master connection for the given time, which when expired, assumes that a new master connection will be created in the subsequent login (which becomes the first login again)
+  ControlPath ~/.ssh/cm-%r@%h:%p            # Defines where the control socket is stored (%r: remote user; %h: hostname; %p: port).
+
